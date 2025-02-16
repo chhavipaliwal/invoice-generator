@@ -1,11 +1,21 @@
 export interface From {
   name: string;
   address?: string;
+  zipCode?: string;
+  city?: string;
+  country?: string;
+  email?: string;
+  phonenumber?: string;
 }
 
 export interface To {
   name: string;
   address?: string;
+  zipCode?: string;
+  city?: string;
+  country?: string;
+  email?: string;
+  phonenumber?: string;
 }
 
 export interface InvoiceDetails {
