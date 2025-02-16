@@ -13,6 +13,7 @@
     "@heroui/react": "^2.6.14",
     "formik": "^2.4.6",
     "framer-motion": "^12.4.3",
+    "lucide-react": "^0.475.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5"
