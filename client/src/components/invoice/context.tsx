@@ -20,6 +20,8 @@ export const InvoiceProvider = ({ children }: Props) => {
     },
   });
 
+  console.log(formik.values);
+
   return (
     <InvoiceContext.Provider value={{ formik }}>
       {children}
