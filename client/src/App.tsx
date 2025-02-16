@@ -7,13 +7,19 @@ import Footer from "./components/home/footer";
 export default function App() {
   return (
     <>
-      <Navbar />
-      <Home />
-      <Footer />
       <Router>
         <Routes>
-          {/* <Route path="/" element={<Hom />} /> */}
-          <Route path="/invoice" element={<Invoice />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <Navbar />
+                <Home />
+                <Footer />
+              </>
+            }
+          />
+          <Route path="/invoices" element={<Invoice />} />
           <Route path="/contact" element={<>Contact</>} />
         </Routes>
       </Router>

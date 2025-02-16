@@ -2,7 +2,7 @@ import { Link } from "@heroui/react";
 const Navbar = () => {
   return (
     <>
-      <nav className="bg-[#C37D35] p-6 shadow-md">
+      <nav className="bg-primary p-6 shadow-md">
         <div className="container mx-auto flex justify-between items-center">
           <Link href="/" className="text-xl text-white font-bold">
             InvoiceGen
@@ -18,15 +18,12 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="p-2 md:p-0">
-              <Link
-                href="/create-invoice"
-                className="hover:underline text-white"
-              >
-                Create Invoice
+              <Link href="/invoices" className="hover:underline text-white">
+                Create I
               </Link>
             </li>
             <li className="p-2 md:p-0">
-              <Link href="/invoices" className="hover:underline text-white">
+              <Link href="" className="hover:underline text-white">
                 Invoice History
               </Link>
             </li>

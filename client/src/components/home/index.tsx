@@ -21,14 +21,14 @@ export default function Home() {
         <div className="mt-6 flex gap-4 justify-center">
           <Button
             as="a"
-            href="/create-invoice"
+            href="/invoices"
             className="bg-primary text-white px-6 py-3 rounded-md hover:bg-primary transition"
           >
             Create Invoice
           </Button>
           <Button
             as="a"
-            href="/invoices"
+            href="/"
             // variant="outline"
             className="border border-primary text-primary px-6 py-3 rounded-md hover:bg-primary hover:text-white transition"
           >
@@ -88,7 +88,7 @@ const FeatureCard: React.FC<{ title: string; description: string }> = ({
 }) => (
   <motion.div
     whileHover={{ scale: 1.05 }}
-    className="bg-[#606062] p-6 rounded-lg text-center shadow-lg border-l-4 border-primary"
+    className="bg-default-400 p-6 rounded-lg text-center shadow-lg border-l-4 border-primary"
   >
     <h3 className="text-xl font-semibold text-primary">{title}</h3>
     <p className="text-gray-300 mt-2">{description}</p>
