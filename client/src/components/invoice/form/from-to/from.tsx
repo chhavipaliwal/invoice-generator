@@ -9,7 +9,7 @@ export default function From() {
       <div className="flex flex-col gap-4">
         <Input
           label="Name"
-          placeholder="Enter Name"
+          placeholder="Your Name"
           value={formik.values?.from?.name}
           onChange={formik.handleChange}
           name="from.name"

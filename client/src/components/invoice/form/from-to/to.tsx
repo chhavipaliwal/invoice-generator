@@ -9,52 +9,52 @@ export default function To() {
       <div className="flex flex-col gap-4">
         <Input
           label="Name"
-          placeholder="Enter Name"
-          value={formik.values?.from?.name}
+          placeholder="Reciever Name"
+          value={formik.values?.to?.name}
           onChange={formik.handleChange}
-          name="from.name"
+          name="to.name"
         />
         <Input
           label="Address"
-          placeholder="Your Address"
-          value={formik.values?.from?.address}
+          placeholder="Reciever Address"
+          value={formik.values?.to?.address}
           onChange={formik.handleChange}
-          name="from.address"
+          name="to.address"
         />
         <Input
           label="Zip Code"
-          placeholder="Your Zip Code"
-          value={formik.values?.from?.zipCode}
+          placeholder="Reciever Zip Code"
+          value={formik.values?.to?.zipCode}
           onChange={formik.handleChange}
-          name="from.zipCode"
+          name="to.zipCode"
         />
         <Input
           label="City"
-          placeholder="Your City"
-          value={formik.values?.from?.city}
+          placeholder="Reciever City"
+          value={formik.values?.to?.city}
           onChange={formik.handleChange}
-          name="from.city"
+          name="to.city"
         />
         <Input
           label="Country"
-          placeholder="Your country"
-          value={formik.values?.from?.country}
+          placeholder="Reciever country"
+          value={formik.values?.to?.country}
           onChange={formik.handleChange}
-          name="from.country"
+          name="to.country"
         />
         <Input
           label="E-mail"
-          placeholder="Your E-mail"
-          value={formik.values?.from?.email}
+          placeholder="Reciever E-mail"
+          value={formik.values?.to?.email}
           onChange={formik.handleChange}
-          name="from.email"
+          name="to.email"
         />
         <Input
           label="Phone "
-          placeholder="Your Phone number"
-          value={formik.values?.from?.phonenumber}
+          placeholder="Reciever Phone number"
+          value={formik.values?.to?.phonenumber}
           onChange={formik.handleChange}
-          name="from.phonenumber"
+          name="to.phonenumber"
         />
       </div>
     </>
