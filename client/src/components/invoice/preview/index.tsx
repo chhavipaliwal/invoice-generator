@@ -1,11 +1,4 @@
 import { useInvoice } from "../context";
-{
-  /* <div>
-          <span>Name:</span>
-          <span>{formik.values?.from?.name}</span>
-        </div> */
-}
-
 export default function Preview() {
   const { formik } = useInvoice();
 
