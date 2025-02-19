@@ -9,7 +9,7 @@ export default function FromTo() {
     <div>
       <h1 className="text-2xl font-semibold text-white mb-4">Tagline :</h1>
       <Input
-        label="tagline"
+        label=""
         placeholder="tagline"
         value={formik.values?.invoiceDetails?.tagline}
         onChange={formik.handleChange}
