@@ -19,6 +19,7 @@ export interface To {
 }
 
 export interface InvoiceDetails {
+  tagline?: string;
   logo?: string;
   invoiceNo: string;
   invoiceDate: string;

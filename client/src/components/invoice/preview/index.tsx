@@ -11,7 +11,9 @@ export default function Preview() {
           <h1 className="text-2xl font-bold text-[#C37D35]">INVOICE</h1>
           <div className="text-right">
             <p className="text-lg font-semibold">Company Name</p>
-            <p className="text-sm text-gray-600">Tagline goes here</p>
+            <p className="text-sm text-gray-600">
+              {formik.values?.invoiceDetails?.tagline}
+            </p>
           </div>
         </div>
         <div className="mt-4">
@@ -20,7 +22,8 @@ export default function Preview() {
             Your Name:<span>{formik.values?.from?.name}</span>
           </p>
           <p className="text-gray-600 text-sm">
-            Your Address, Your City, Your Country
+            <span>{formik.values?.from?.address}</span>,
+            {formik.values?.from?.city}, {formik.values?.from?.country}
           </p>
           <p className="text-gray-600 text-sm">Email: your.email@example.com</p>
           <p className="text-gray-600 text-sm">Phone: 0000000000</p>
