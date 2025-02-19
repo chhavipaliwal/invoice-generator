@@ -14,7 +14,6 @@ export default function Preview() {
             <p className="text-sm text-gray-600">Tagline goes here</p>
           </div>
         </div>
-
         <div className="mt-4">
           <p className="font-semibold">Bill From:</p>
           <p className="text-gray-700">
