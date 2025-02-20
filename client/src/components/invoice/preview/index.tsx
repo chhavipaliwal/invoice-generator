@@ -1,9 +1,7 @@
 import { useInvoice } from "../context";
 export default function Preview() {
   const { formik } = useInvoice();
-
   console.log(formik.values);
-
   return (
     <div className="bg-gray-100 flex justify-center p-6">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
@@ -16,29 +14,50 @@ export default function Preview() {
             </p>
           </div>
         </div>
-        <div className="mt-4">
-          <p className="font-semibold">Bill From:</p>
-          <p className="text-gray-700">
-            Your Name:<span>{formik.values?.from?.name}</span>
-          </p>
-          <p className="text-gray-600 text-sm">
-            <span>{formik.values?.from?.address}</span>,
-            {formik.values?.from?.city}, {formik.values?.from?.country}
-          </p>
-          <p className="text-gray-600 text-sm">Email: your.email@example.com</p>
-          <p className="text-gray-600 text-sm">Phone: 0000000000</p>
-        </div>
+        <div className="flex justify-between">
+          <div className="mt-4">
+            <p className="font-semibold text-black">
+              Bill From:
+              <span className="text-gray-600 text-sm">
+                {formik.values?.from?.name}
+              </span>
+            </p>
+            <p className="text-gray-600 text-sm">
+              <span>{formik.values?.from?.address}</span>,
+              <span>{formik.values?.from?.city}</span>
+              <br></br>
+              <span>{formik.values?.from?.country}</span>,
+              {formik.values?.from?.zipCode}
+            </p>
+            <p className="text-gray-600 text-sm">
+              Email:<span>{formik.values?.from?.email}</span>
+            </p>
+            <p className="text-gray-600 text-sm">
+              Phone:{formik.values?.from?.phonenumber}{" "}
+            </p>
+          </div>
 
-        <div className="mt-4">
-          <p className="font-semibold">Bill To:</p>
-          <p className="text-gray-700">Receiver Name</p>
-          <p className="text-gray-600 text-sm">
-            Receiver Address, Receiver City, Receiver Country
-          </p>
-          <p className="text-gray-600 text-sm">
-            Email: receiver.email@example.com
-          </p>
-          <p className="text-gray-600 text-sm">Phone: 0000000000</p>
+          <div className="mt-4">
+            <p className="font-semibold text-black">
+              Bill To:
+              <span className="text-gray-600 text-sm">
+                {formik.values?.to?.name}
+              </span>
+            </p>
+            <p className="text-gray-600 text-sm">
+              <span>{formik.values?.to?.address}</span>,
+              <span>{formik.values?.to?.city}</span>
+              <br></br>
+              <span>{formik.values?.to?.country}</span>,
+              {formik.values?.to?.zipCode}
+            </p>
+            <p className="text-gray-600 text-sm">
+              Email: <span>{formik.values?.to?.email}</span>
+            </p>
+            <p className="text-gray-600 text-sm">
+              Phone:{formik.values?.to?.phonenumber}{" "}
+            </p>
+          </div>
         </div>
 
         <div className="mt-4">
