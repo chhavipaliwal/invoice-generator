@@ -1,5 +1,16 @@
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Input,
+  NumberInput,
+  Textarea,
+} from "@heroui/react";
 import { useInvoice } from "../../context";
 import { Icon } from "@iconify/react";
+import { FormatCurrency } from "../../../../libs/utility";
 export default function LineItems() {
   const { formik } = useInvoice();
   const lineItems = formik.values.lineItems || [];
@@ -7,7 +18,7 @@ export default function LineItems() {
   const handleAddItem = () => {
     formik.setFieldValue("lineItems", [
       ...lineItems,
-      { name: "", quantity: 0, rate: 0, description: "" },
+      { name: "", quantity: 1, rate: 1, description: "" },
     ]);
   };
 
@@ -18,97 +29,86 @@ export default function LineItems() {
   };
 
   return (
-    <div className="bg-[#0F0F13] p-6 rounded-xl text-white w-full max-w-2xl space-y-4">
+    <div className="rounded-large w-full space-y-4">
       <h2 className="text-lg font-semibold">Items:</h2>
 
       {lineItems.map((item, index) => (
-        <div
-          key={index}
-          className="bg-[#19191F] p-4 rounded-lg border border-[#33343B] space-y-3"
-        >
-          <div className="flex items-center justify-between">
+        <Card key={index}>
+          <CardHeader className="flex items-center justify-between">
             <h3 className="text-sm font-medium">#{index + 1} - Empty name</h3>
             <div className="flex space-x-2">
-              <button className="bg-[#33343B] p-2 rounded-lg hover:bg-[#44454C]">
-                <Icon icon="mdi:chevron-up" className="text-lg text-white" />
-              </button>
-              <button className="bg-[#33343B] p-2 rounded-lg hover:bg-[#44454C]">
-                <Icon icon="mdi:chevron-down" className="text-lg text-white" />
-              </button>
+              <Button
+                isIconOnly
+                onPress={() => handleRemoveItem(index)}
+                color="danger"
+                variant="flat"
+              >
+                <Icon icon="solar:trash-bin-minimalistic-bold" width={18} />
+              </Button>
             </div>
-          </div>
+          </CardHeader>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1">
-              <label className="text-sm font-medium">Name:</label>
-              <input
-                type="text"
+          <CardBody>
+            <div className="grid grid-cols-6 gap-4">
+              <Input
+                label="Name"
                 name={`lineItems[${index}].name`}
                 value={item.name}
                 onChange={formik.handleChange}
                 placeholder="Item name"
-                className="w-full bg-[#212228] border border-[#33343B] px-3 py-2 rounded-lg text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C37D35]"
+                className="col-span-3"
+              />
+              <NumberInput
+                hideStepper
+                label="Quantity"
+                name={`lineItems[${index}].quantity`}
+                value={item.quantity}
+                onValueChange={(value) => {
+                  formik.setFieldValue(`lineItems[${index}].quantity`, value);
+                }}
+                min="0"
+              />
+              <NumberInput
+                hideStepper
+                label="Rate"
+                name={`lineItems[${index}].rate`}
+                value={item.rate}
+                onValueChange={(value) => {
+                  formik.setFieldValue(`lineItems[${index}].rate`, value);
+                }}
+                min="0"
+                startContent={FormatCurrency[formik.values.currency].symbol}
+              />
+              <div className="flex flex-col items-start">
+                <span>Total</span>
+                <span className="text-sm font-medium">
+                  {FormatCurrency[formik.values.currency].symbol}
+                  {(item.quantity * item.rate).toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                </span>
+              </div>
+              <Textarea
+                label="Description"
+                name={`lineItems[${index}].description`}
+                value={item.description}
+                onChange={formik.handleChange}
+                placeholder="Item description"
+                className="col-span-full"
               />
             </div>
-            <div className="grid grid-cols-3 gap-2">
-              <div className="space-y-1">
-                <label className="text-sm font-medium">Quantity:</label>
-                <input
-                  type="number"
-                  name={`lineItems[${index}].quantity`}
-                  value={item.quantity}
-                  onChange={formik.handleChange}
-                  min="0"
-                  className="w-full bg-[#212228] border border-[#33343B] px-3 py-2 rounded-lg text-sm text-center text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C37D35]"
-                />
-              </div>
-              <div className="space-y-1">
-                <label className="text-sm font-medium">Rate:</label>
-                <input
-                  type="number"
-                  name={`lineItems[${index}].rate`}
-                  value={item.rate}
-                  onChange={formik.handleChange}
-                  min="0"
-                  className="w-full bg-[#212228] border border-[#33343B] px-3 py-2 rounded-lg text-sm text-center text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C37D35]"
-                />
-              </div>
-              <div className="flex items-end">
-                <p className="text-sm font-medium">
-                  Total: {(item.quantity * item.rate).toFixed(2)} UGX
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-1">
-            <label className="text-sm font-medium">Description:</label>
-            <textarea
-              name={`lineItems[${index}].description`}
-              value={item.description}
-              onChange={formik.handleChange}
-              placeholder="Item description"
-              className="w-full bg-[#212228] border border-[#33343B] px-3 py-2 rounded-lg text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C37D35]"
-            />
-          </div>
-
-          <button
-            onClick={() => handleRemoveItem(index)}
-            className="w-full flex items-center justify-center bg-red-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-red-700"
-          >
-            <Icon icon="mdi:trash-can" className="text-lg mr-2" />
-            Remove Item
-          </button>
-        </div>
+          </CardBody>
+        </Card>
       ))}
 
-      <button
-        onClick={handleAddItem}
-        className="w-full flex items-center justify-center bg-[#E5E5E5] text-black px-3 py-3 rounded-lg text-sm font-medium hover:bg-[#D4D4D4]"
+      <Button
+        onPress={handleAddItem}
+        fullWidth
+        startContent={<Icon icon="solar:add-square-bold" width={18} />}
       >
-        <Icon icon="mdi:plus-circle" className="text-lg mr-2" />
         Add a new item
-      </button>
+      </Button>
 
       <div className="flex justify-between pt-4">
         <button className="flex items-center space-x-2 px-4 py-2 bg-[#33343B] text-white rounded-lg hover:bg-[#44454C]">

@@ -19,20 +19,17 @@ export interface To {
 }
 
 export interface InvoiceDetails {
-  invoiceNo: string;
-  invoiceDate: string;
-  dueDate: string;
-  currency: {
-    code: string;
-    label: string;
-  };
+  invoiceNo?: string;
+  invoiceDate?: string;
+  dueDate?: string;
+
 }
 export interface LineItem {
   id: number;
   name: string;
   quantity: number;
   rate: number;
-  description: string;
+  description?: string;
 }
 
 export interface PaymentInfo {
@@ -41,31 +38,33 @@ export interface PaymentInfo {
   accountNumber: string;
 }
 
+export type InputTypes = "percentage" | "fixed";
+
 export interface Summary {
-  subtotal: number;
-  total: number;
+  subtotal?: number;
+  total?: number;
   discount: {
     isDiscount: boolean;
-    amount: number;
-    type: "percentage" | "fixed";
+    amount?: number;
+    type: InputTypes;
   },
   shipping: {
     isShipping: boolean;
-    amount: number;
-    type: "percentage" | "fixed";
+    amount?: number;
   },
   tax: {
     isTax: boolean;
-    amount: number;
-    type: "percentage" | "fixed";
+    amount?: number;
+    type: InputTypes;
   },
-  totalAmount: number;
-  isInWords: boolean;
-  additionalNotes: string;
-  termsAndConditions: string;
+  isInWords?: boolean;
+  additionalNotes?: string;
+  termsAndConditions?: string;
 }
 
-type TabsKeys = "from-to" | "invoice-details" | "line-items" | "payment-info" | "summary";
+export type TabsKeys = "from-to" | "invoice-details" | "line-items" | "payment-info" | "summary";
+
+export type Currency = "INR" | "USD" | "EUR" | "GBP";
 
 export interface InvoiceType {
   tagline: string;
@@ -76,4 +75,5 @@ export interface InvoiceType {
   lineItems: LineItem[];
   paymentInfo: PaymentInfo;
   summary: Summary;
+  currency: Currency;
 }
