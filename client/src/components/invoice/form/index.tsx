@@ -21,7 +21,7 @@ export default function Form() {
     {
       key: "line-items",
       title: "Line Items",
-      component: <>swhu</>,
+      component: <LineItems />,
     },
     {
       key: "payment-info",
