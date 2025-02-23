@@ -1,17 +1,18 @@
-import { useState } from "react";
 import { useInvoice } from "../../context";
 import { Icon } from "@iconify/react";
 export default function LineItems() {
   const { formik } = useInvoice();
+  const lineItems = formik.values.lineItems || [];
+
   const handleAddItem = () => {
     formik.setFieldValue("lineItems", [
-      ...formik.values.lineItems,
+      ...lineItems,
       { name: "", quantity: 0, rate: 0, description: "" },
     ]);
   };
 
   const handleRemoveItem = (index: number) => {
-    const newItems = [...formik.values.lineItems];
+    const newItems = [...lineItems];
     newItems.splice(index, 1);
     formik.setFieldValue("lineItems", newItems);
   };
@@ -20,7 +21,7 @@ export default function LineItems() {
     <div className="bg-[#0F0F13] p-6 rounded-xl text-white w-full max-w-2xl space-y-4">
       <h2 className="text-lg font-semibold">Items:</h2>
 
-      {formik.values.lineItems?.map((item, index) => (
+      {lineItems.map((item, index) => (
         <div
           key={index}
           className="bg-[#19191F] p-4 rounded-lg border border-[#33343B] space-y-3"
@@ -43,7 +44,7 @@ export default function LineItems() {
               <input
                 type="text"
                 name={`lineItems[${index}].name`}
-                value={formik.values.lineItems[index].name}
+                value={item.name}
                 onChange={formik.handleChange}
                 placeholder="Item name"
                 className="w-full bg-[#212228] border border-[#33343B] px-3 py-2 rounded-lg text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C37D35]"
@@ -55,7 +56,7 @@ export default function LineItems() {
                 <input
                   type="number"
                   name={`lineItems[${index}].quantity`}
-                  value={formik.values.lineItems[index].quantity}
+                  value={item.quantity}
                   onChange={formik.handleChange}
                   min="0"
                   className="w-full bg-[#212228] border border-[#33343B] px-3 py-2 rounded-lg text-sm text-center text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C37D35]"
@@ -66,7 +67,7 @@ export default function LineItems() {
                 <input
                   type="number"
                   name={`lineItems[${index}].rate`}
-                  value={formik.values.lineItems[index].rate}
+                  value={item.rate}
                   onChange={formik.handleChange}
                   min="0"
                   className="w-full bg-[#212228] border border-[#33343B] px-3 py-2 rounded-lg text-sm text-center text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C37D35]"
@@ -84,7 +85,7 @@ export default function LineItems() {
             <label className="text-sm font-medium">Description:</label>
             <textarea
               name={`lineItems[${index}].description`}
-              value={formik.values.lineItems[index].description}
+              value={item.description}
               onChange={formik.handleChange}
               placeholder="Item description"
               className="w-full bg-[#212228] border border-[#33343B] px-3 py-2 rounded-lg text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C37D35]"
@@ -116,7 +117,10 @@ export default function LineItems() {
         </button>
         <button
           type="submit"
-          onClick={formik.handleSubmit}
+          onClick={(e) => {
+            e.preventDefault();
+            formik.handleSubmit();
+          }}
           className="flex items-center space-x-2 px-4 py-2 bg-[#C37D35] text-white rounded-lg hover:bg-[#A96930]"
         >
           Next

@@ -3,6 +3,8 @@ import FromTo from "./from-to";
 import { useInvoice } from "../context";
 import InvoiceDetails from "./invoice-details";
 import LineItems from "./line-items";
+import PaymentInfo from "./payment-info";
+import Summary from "./summary";
 
 export default function Form() {
   const { formik } = useInvoice();
@@ -26,12 +28,12 @@ export default function Form() {
     {
       key: "payment-info",
       title: "Payment Info",
-      component: <>Payment Info</>,
+      component: <PaymentInfo />,
     },
     {
       key: "summary",
       title: "Summary",
-      component: <>Summary</>,
+      component: <Summary />,
     },
   ];
 

@@ -3,7 +3,7 @@ export default function Preview() {
   const { formik } = useInvoice();
 
   return (
-    <div className="bg-gray-100 flex justify-center p-6">
+    <div className="bg-gray-100 text-black flex justify-center p-6">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
         <div className="flex justify-between items-center border-b pb-4">
           <h1 className="text-2xl font-bold text-[#C37D35]">INVOICE</h1>
@@ -72,7 +72,7 @@ export default function Preview() {
           </p>
         </div>
 
-        <table className="w-full mt-6 border-collapse border border-gray-300">
+        <table className="w-full mt-6 border-collapse border border-gray-300 text-black">
           <thead className="bg-gray-200">
             <tr>
               <th className="border border-gray-300 px-4 py-2 text-left">
@@ -90,16 +90,23 @@ export default function Preview() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="border border-gray-300 px-4 py-2">Item Name</td>
-              <td className="border border-gray-300 px-4 py-2 text-right">
-                $14
-              </td>
-              <td className="border border-gray-300 px-4 py-2 text-right">6</td>
-              <td className="border border-gray-300 px-4 py-2 text-right">
-                $84
-              </td>
-            </tr>
+            {formik.values.lineItems?.map((item) => (
+              <tr>
+                <td className="border border-gray-300 px-4 py-2 flex flex-col gap-2">
+                  <span>{item.name}</span>
+                  <span className="text-sm">{item.description}</span>
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-right">
+                  <span>{item.rate}</span>
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-right">
+                  <span>{item.quantity}</span>
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-right">
+                  <span>{item.quantity * item.rate}</span>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
 
@@ -107,14 +114,31 @@ export default function Preview() {
           <p className="font-semibold">
             Subtotal: <span className="text-gray-700">$84.00</span>
           </p>
+          {formik.values?.summary?.discount?.isDiscount && (
+            <p className="font-semibold">
+              Discount:{" "}
+              <span className="text-gray-700">
+                {formik.values?.summary?.discount?.type === "percentage"
+                  ? `${formik.values?.summary?.discount?.amount}%`
+                  : `$${formik.values?.summary?.discount?.amount}`}
+              </span>
+            </p>
+          )}
           <p className="text-lg font-bold text-[#C37D35]">Total: $84.00</p>
         </div>
 
         <div className="mt-4">
           <p className="font-semibold">Payment Information:</p>
-          <p className="text-gray-700">Bank Name: Your Bank</p>
-          <p className="text-gray-700">Account Name: Your Account</p>
-          <p className="text-gray-700">Account Number: 0000000000</p>
+          <p className="text-gray-700">
+            Bank Name: <span>{formik.values?.paymentInfo?.bankName} </span>
+          </p>
+          <p className="text-gray-700">
+            Account Name: <span>{formik.values?.paymentInfo?.accountName}</span>
+          </p>
+          <p className="text-gray-700">
+            Account Number:{" "}
+            <span>{formik.values?.paymentInfo?.accountNumber}</span>
+          </p>
         </div>
 
         <div className="mt-6 text-center text-sm text-gray-600 border-t pt-4">

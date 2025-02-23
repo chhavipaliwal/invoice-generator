@@ -27,7 +27,7 @@ export interface InvoiceDetails {
     label: string;
   };
 }
-interface LineItem {
+export interface LineItem {
   id: number;
   name: string;
   quantity: number;
@@ -35,6 +35,35 @@ interface LineItem {
   description: string;
 }
 
+export interface PaymentInfo {
+  bankName: string;
+  accountName: string;
+  accountNumber: string;
+}
+
+export interface Summary {
+  subtotal: number;
+  total: number;
+  discount: {
+    isDiscount: boolean;
+    amount: number;
+    type: "percentage" | "fixed";
+  },
+  shipping: {
+    isShipping: boolean;
+    amount: number;
+    type: "percentage" | "fixed";
+  },
+  tax: {
+    isTax: boolean;
+    amount: number;
+    type: "percentage" | "fixed";
+  },
+  totalAmount: number;
+  isInWords: boolean;
+  additionalNotes: string;
+  termsAndConditions: string;
+}
 
 type TabsKeys = "from-to" | "invoice-details" | "line-items" | "payment-info" | "summary";
 
@@ -45,4 +74,6 @@ export interface InvoiceType {
   invoiceDetails: InvoiceDetails;
   tabsKey: TabsKeys;
   lineItems: LineItem[];
+  paymentInfo: PaymentInfo;
+  summary: Summary;
 }
