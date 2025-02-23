@@ -1,7 +1,7 @@
 import { useInvoice } from "../context";
 export default function Preview() {
   const { formik } = useInvoice();
-  console.log(formik.values);
+
   return (
     <div className="bg-gray-100 flex justify-center p-6">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
@@ -9,9 +9,7 @@ export default function Preview() {
           <h1 className="text-2xl font-bold text-[#C37D35]">INVOICE</h1>
           <div className="text-right">
             <p className="text-lg font-semibold">Company Name</p>
-            <p className="text-sm text-gray-600">
-              {formik.values?.invoiceDetails?.tagline}
-            </p>
+            <p className="text-sm text-gray-600">{formik.values?.tagline}</p>
           </div>
         </div>
         <div className="flex justify-between">
@@ -62,9 +60,16 @@ export default function Preview() {
 
         <div className="mt-4">
           <p className="font-semibold">Invoice Details:</p>
-          <p className="text-gray-700 text-sm">Invoice No: 7867575</p>
-          <p className="text-gray-700 text-sm">Issue Date: 02/12/2022</p>
-          <p className="text-gray-700 text-sm">Due Date: 02/22/2022</p>
+          <p className="text-gray-700 text-sm">
+            Invoice No: <span>{formik.values?.invoiceDetails?.invoiceNo}</span>
+          </p>
+          <p className="text-gray-700 text-sm">
+            Issue Date:{" "}
+            <span>{formik.values?.invoiceDetails?.invoiceDate}</span>
+          </p>
+          <p className="text-gray-700 text-sm">
+            Due Date: <span>{formik.values?.invoiceDetails?.dueDate}</span>
+          </p>
         </div>
 
         <table className="w-full mt-6 border-collapse border border-gray-300">
