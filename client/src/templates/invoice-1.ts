@@ -30,7 +30,7 @@ export function Invoice1(
 
         <div class="text-end">
           <h2 class="text-2xl md:text-3xl font-semibold text-gray-800">Invoice #</h2>
-          <span class="mt-1 block text-gray-500">${data.invoiceDetails?.invoiceNo || format(new Date(), "yyyyMMdd")}</span>
+          <span class="mt-1 block text-gray-500">${data.invoiceDetails.invoiceNo}</span>
 
           <address class="mt-4 not-italic flex flex-col text-gray-800">
             <span class="font-semibold">${data.from?.name || ""}</span>

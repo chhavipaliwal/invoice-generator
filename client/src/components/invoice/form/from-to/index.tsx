@@ -7,15 +7,14 @@ export default function FromTo() {
   const { formik } = useInvoice();
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-white mb-4">Tagline :</h1>
       <Input
-        label=""
+        label="Tagline"
         placeholder="tagline"
-        value={formik.values?.invoiceDetails?.tagline}
+        value={formik.values?.tagline}
         onChange={formik.handleChange}
-        name="invoiceDetails.tagline"
+        name="tagline"
       />
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="flex mt-4 flex-col lg:flex-row gap-4">
         <From />
         <To />
       </div>

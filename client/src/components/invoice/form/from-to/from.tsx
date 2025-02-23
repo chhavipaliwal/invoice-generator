@@ -6,7 +6,7 @@ export default function From() {
 
   return (
     <>
-      <div className="w-full lg:w-1/2 p-6 bg-[#0F1015] rounded-xl">
+      <div className="w-full lg:w-1/2">
         <h2 className="text-xl font-semibold text-white mb-4">Bill From:</h2>
         <form className="space-y-4">
           <Input
@@ -24,13 +24,6 @@ export default function From() {
             name="from.address"
           />
           <Input
-            label="Zip Code"
-            placeholder="Your Zip Code"
-            value={formik.values?.from?.zipCode}
-            onChange={formik.handleChange}
-            name="from.zipCode"
-          />
-          <Input
             label="City"
             placeholder="Your City"
             value={formik.values?.from?.city}
@@ -43,6 +36,13 @@ export default function From() {
             value={formik.values?.from?.country}
             onChange={formik.handleChange}
             name="from.country"
+          />
+          <Input
+            label="Zip Code"
+            placeholder="Your Zip Code"
+            value={formik.values?.from?.zipCode}
+            onChange={formik.handleChange}
+            name="from.zipCode"
           />
           <Input
             label="E-mail"

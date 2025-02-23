@@ -1,6 +1,9 @@
 import { useFormik } from "formik";
 import { useContext, createContext, ReactNode, useEffect } from "react";
 import { InvoiceType } from "../../libs/interface";
+import { generatePDF } from "../../libs/actions";
+import { addToast } from "@heroui/react";
+import { format } from "date-fns";
 
 type InvoiceContextType = {
   formik: ReturnType<typeof useFormik<InvoiceType>>;
@@ -44,7 +47,7 @@ export const InvoiceProvider = ({ children }: Props) => {
         phonenumber: "",
       },
       invoiceDetails: {
-        invoiceNo: "",
+        invoiceNo: format(new Date(), "yyyyMMdd"),
         invoiceDate: "",
         dueDate: "",
       },
@@ -88,8 +91,22 @@ export const InvoiceProvider = ({ children }: Props) => {
         termsAndConditions: "",
       },
     },
-    onSubmit: (values) => {
-      console.log("submitted");
+    onSubmit: async (values) => {
+      await generatePDF(values)
+        .then(() => {
+          addToast({
+            title: "Invoice Downloaded",
+            description: "Invoice downloaded successfully",
+            color: "success",
+          });
+        })
+        .catch(() => {
+          addToast({
+            title: "Error",
+            description: "Error downloading invoice",
+            color: "danger",
+          });
+        });
     },
   });
 

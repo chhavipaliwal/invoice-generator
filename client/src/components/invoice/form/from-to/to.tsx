@@ -4,7 +4,7 @@ export default function To() {
   const { formik } = useInvoice();
   return (
     <>
-      <div className="w-full lg:w-1/2 p-6 bg-[#0F1015] rounded-xl">
+      <div className="w-full lg:w-1/2">
         <h2 className="text-xl font-semibold text-white mb-4">Bill To:</h2>
         <form className="space-y-4">
           <Input
@@ -22,13 +22,6 @@ export default function To() {
             name="to.address"
           />
           <Input
-            label="Zip Code"
-            placeholder="Reciever Zip Code"
-            value={formik.values?.to?.zipCode}
-            onChange={formik.handleChange}
-            name="to.zipCode"
-          />
-          <Input
             label="City"
             placeholder="Reciever City"
             value={formik.values?.to?.city}
@@ -41,6 +34,13 @@ export default function To() {
             value={formik.values?.to?.country}
             onChange={formik.handleChange}
             name="to.country"
+          />
+          <Input
+            label="Zip Code"
+            placeholder="Reciever Zip Code"
+            value={formik.values?.to?.zipCode}
+            onChange={formik.handleChange}
+            name="to.zipCode"
           />
           <Input
             label="E-mail"
