@@ -12,9 +12,9 @@ export default function Summary() {
         <div className="flex flex-col gap-2">
           <Switch
             defaultSelected={formik.values?.summary?.discount?.isDiscount}
-            onChange={formik.handleChange}
             isSelected={formik.values?.summary?.discount?.isDiscount}
             name="summary.discount.isDiscount"
+            onChange={formik.handleChange}
           >
             Discount
           </Switch>

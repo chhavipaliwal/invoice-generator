@@ -41,25 +41,29 @@ export interface PaymentInfo {
 export type InputTypes = "percentage" | "fixed";
 
 export interface Summary {
-  subtotal?: number;
-  total?: number;
+  subtotal: number;
+  total: number;
   discount: {
     isDiscount: boolean;
-    amount?: number;
+    amount: number;
     type: InputTypes;
   },
   shipping: {
     isShipping: boolean;
-    amount?: number;
+    amount: number;
   },
   tax: {
     isTax: boolean;
-    amount?: number;
+    amount: number;
     type: InputTypes;
   },
   isInWords?: boolean;
   additionalNotes?: string;
   termsAndConditions?: string;
+  totalInWords?: string;
+  totalTax: number;
+  totalShipping: number;
+  totalDiscount: number;
 }
 
 export type TabsKeys = "from-to" | "invoice-details" | "line-items" | "payment-info" | "summary";
