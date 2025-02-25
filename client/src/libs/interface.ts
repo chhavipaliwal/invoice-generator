@@ -22,7 +22,6 @@ export interface InvoiceDetails {
   invoiceNo?: string;
   invoiceDate?: string;
   dueDate?: string;
-
 }
 export interface LineItem {
   id: number;
@@ -47,31 +46,35 @@ export interface Summary {
     isDiscount: boolean;
     amount: number;
     type: InputTypes;
-  },
+  };
   shipping: {
     isShipping: boolean;
     amount: number;
-  },
+  };
   tax: {
     isTax: boolean;
     amount: number;
     type: InputTypes;
-  },
+  };
   isInWords?: boolean;
   additionalNotes?: string;
   termsAndConditions?: string;
-  totalInWords?: string;
   totalTax: number;
   totalShipping: number;
   totalDiscount: number;
 }
 
-export type TabsKeys = "from-to" | "invoice-details" | "line-items" | "payment-info" | "summary";
+export type TabsKeys =
+  | "from-to"
+  | "invoice-details"
+  | "line-items"
+  | "payment-info"
+  | "summary";
 
 export type Currency = "INR" | "USD" | "EUR" | "GBP";
 
 export interface InvoiceType {
-  tagline: string;
+  companyName: string;
   from: From;
   to: To;
   invoiceDetails: InvoiceDetails;

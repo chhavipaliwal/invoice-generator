@@ -7,17 +7,16 @@ export default function Preview() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div
-        dangerouslySetInnerHTML={{ __html: Invoice1({ data: formik.values }) }}
-      />
       <Button
         color="primary"
-        size="sm"
         isLoading={formik.isSubmitting}
         onPress={() => formik.handleSubmit()}
       >
         Download PDF
       </Button>
+      <div
+        dangerouslySetInnerHTML={{ __html: Invoice1({ data: formik.values }) }}
+      />
     </div>
   );
 }

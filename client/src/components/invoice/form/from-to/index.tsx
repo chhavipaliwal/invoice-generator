@@ -8,11 +8,11 @@ export default function FromTo() {
   return (
     <div>
       <Input
-        label="Tagline"
-        placeholder="tagline"
-        value={formik.values?.tagline}
+        label="Company Name"
+        placeholder="Company Name"
+        value={formik.values?.companyName}
         onChange={formik.handleChange}
-        name="tagline"
+        name="companyName"
       />
       <div className="flex mt-4 flex-col lg:flex-row gap-4">
         <From />

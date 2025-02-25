@@ -27,7 +27,7 @@ export const InvoiceProvider = ({ children }: Props) => {
   const formik = useFormik<InvoiceType>({
     initialValues: {
       tabsKey: "from-to",
-      tagline: "",
+      companyName: "",
       from: {
         name: "",
         address: "",
