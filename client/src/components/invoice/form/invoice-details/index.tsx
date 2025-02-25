@@ -7,55 +7,32 @@ export default function InvoiceDetails() {
   const { formik } = useInvoice();
 
   return (
-    <div className="p-6 rounded-xl shadow-lg w-full max-w-md space-y-4">
-      {/* Invoice Number */}
-      <div className="space-y-1">
-        <Input
-          label="Invoice number"
-          type="text"
-          placeholder="Invoice number"
-          value={formik.values?.invoiceDetails?.invoiceNo}
-          onChange={formik.handleChange}
-          name="invoiceDetails.invoiceNo"
-        />
-      </div>
-
-      {/* Issue Date */}
-
+    <div className="grid sm:grid-cols-2 gap-4">
       <Input
-        label="Issue date"
-        type="date"
-        placeholder="Issue date"
-        value={formik.values?.invoiceDetails?.invoiceDate}
+        label="Invoice number"
+        type="text"
+        placeholder="Invoice number"
+        value={formik.values?.invoiceDetails?.invoiceNo}
         onChange={formik.handleChange}
-        name="invoiceDetails.invoiceDate"
+        name="invoiceDetails.invoiceNo"
+        isInvalid={
+          formik.touched.invoiceDetails?.invoiceNo &&
+          formik.errors.invoiceDetails?.invoiceNo
+            ? true
+            : false
+        }
+        errorMessage={formik.errors.invoiceDetails?.invoiceNo}
       />
-      <Icon
-        icon="uil:calender"
-        className="w-5 h-5 text-gray-400 absolute right-3 top-3 pointer-events-none"
-      />
-
-      {/* Due Date */}
-
-      <Input
-        label="Due date"
-        type="date"
-        value={formik.values?.invoiceDetails?.dueDate}
-        onChange={formik.handleChange}
-        name="invoiceDetails.dueDate"
-      />
-      <Icon
-        icon="uil:calender"
-        className="w-5 h-5 text-gray-400 absolute right-3 top-3 pointer-events-none"
-      />
-
-      {/* Currency */}
       <Select
         label="Currency"
         value={formik.values?.currency}
         defaultSelectedKeys={[formik.values?.currency]}
         onChange={formik.handleChange}
         name="currency"
+        isInvalid={
+          formik.touched.currency && formik.errors.currency ? true : false
+        }
+        errorMessage={formik.errors.currency}
       >
         {currencies.map((currency) => (
           <SelectItem
@@ -68,6 +45,27 @@ export default function InvoiceDetails() {
           </SelectItem>
         ))}
       </Select>
+
+      <Input
+        label="Issue date"
+        type="date"
+        placeholder="Issue date"
+        value={formik.values?.invoiceDetails?.invoiceDate}
+        onChange={formik.handleChange}
+        name="invoiceDetails.invoiceDate"
+      />
+
+      {/* Due Date */}
+
+      <Input
+        label="Due date"
+        type="date"
+        value={formik.values?.invoiceDetails?.dueDate}
+        onChange={formik.handleChange}
+        name="invoiceDetails.dueDate"
+      />
+
+      {/* Currency */}
     </div>
   );
 }

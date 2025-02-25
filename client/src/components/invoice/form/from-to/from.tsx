@@ -15,6 +15,12 @@ export default function From() {
             value={formik.values?.from?.name}
             onChange={formik.handleChange}
             name="from.name"
+            isInvalid={
+              formik.touched.from?.name && formik.errors.from?.name
+                ? true
+                : false
+            }
+            errorMessage={formik.errors.from?.name}
           />
           <Input
             label="Address"
@@ -59,9 +65,6 @@ export default function From() {
             name="from.phonenumber"
           />
         </form>
-        <button className="text-primary flex items-center space-x-2 hover:text-[#E29554]">
-          <span>+ Add Custom Input</span>
-        </button>
       </div>
     </>
   );

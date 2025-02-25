@@ -107,7 +107,9 @@ export function Invoice1({ data }: { data: InvoiceType }) {
           <div class="grid grid-cols-6 gap-2">
             <div class="max-w-sm col-span-3">
               <p class="font-medium text-gray-800">${item.name}</p>
-              <p class="text-xs text-gray-500">${item.description}</p>
+              <p class="text-xs whitespace-pre-wrap text-gray-500">${
+                item.description
+              }</p>
             </div>
             <div>
               <p class="text-gray-800">${item.quantity}</p>

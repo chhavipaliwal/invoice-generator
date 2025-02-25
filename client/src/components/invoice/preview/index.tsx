@@ -1,6 +1,6 @@
 import { useInvoice } from "../context";
 import { Invoice1 } from "../../../templates/invoice-1";
-import { Button } from "@heroui/react";
+import { addToast, Button, ScrollShadow } from "@heroui/react";
 
 export default function Preview() {
   const { formik } = useInvoice();
@@ -10,13 +10,36 @@ export default function Preview() {
       <Button
         color="primary"
         isLoading={formik.isSubmitting}
-        onPress={() => formik.handleSubmit()}
+        onPress={() => {
+          if (Object.keys(formik.errors).length > 0) {
+            addToast({
+              title: "Please fill all the fields",
+              description: (() => {
+                const errors = Object.entries(formik.errors).map(
+                  ([_key, value]) => String(value)
+                );
+                return errors.length > 1
+                  ? errors.length === 2
+                    ? `${errors[0]} (+${errors.length - 1} more error)`
+                    : `${errors[0]} (+${errors.length - 1} more errors)`
+                  : errors[0] || "";
+              })(),
+              color: "danger",
+            });
+          } else {
+            formik.handleSubmit();
+          }
+        }}
       >
         Download PDF
       </Button>
-      <div
-        dangerouslySetInnerHTML={{ __html: Invoice1({ data: formik.values }) }}
-      />
+      <ScrollShadow className="max-h-[85vh] light">
+        <div
+          dangerouslySetInnerHTML={{
+            __html: Invoice1({ data: formik.values }),
+          }}
+        />
+      </ScrollShadow>
     </div>
   );
 }

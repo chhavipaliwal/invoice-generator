@@ -13,6 +13,10 @@ export default function FromTo() {
         value={formik.values?.companyName}
         onChange={formik.handleChange}
         name="companyName"
+        isInvalid={
+          formik.touched.companyName && formik.errors.companyName ? true : false
+        }
+        errorMessage={formik.errors.companyName}
       />
       <div className="flex mt-4 flex-col lg:flex-row gap-4">
         <From />

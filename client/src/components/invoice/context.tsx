@@ -4,6 +4,7 @@ import { InvoiceType } from "../../libs/interface";
 import { generatePDF } from "../../libs/actions";
 import { addToast } from "@heroui/react";
 import { format } from "date-fns";
+import { invoiceSchema } from "../../libs/validations";
 
 type InvoiceContextType = {
   formik: ReturnType<typeof useFormik<InvoiceType>>;
@@ -91,6 +92,7 @@ export const InvoiceProvider = ({ children }: Props) => {
         termsAndConditions: "",
       },
     },
+    validationSchema: invoiceSchema,
     onSubmit: async (values) => {
       await generatePDF(values)
         .then(() => {

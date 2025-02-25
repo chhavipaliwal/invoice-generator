@@ -29,12 +29,12 @@ export default function LineItems() {
 
   return (
     <div className="rounded-large w-full space-y-4">
-      <h2 className="text-lg font-semibold">Items:</h2>
-
       {lineItems.map((item, index) => (
         <Card key={index}>
           <CardHeader className="flex items-center justify-between">
-            <h3 className="text-sm font-medium">#{index + 1} - Empty name</h3>
+            <h3 className="text-sm font-medium">
+              #{index + 1} - {item.name || "Empty name"}
+            </h3>
             <div className="flex space-x-2">
               <Button
                 isIconOnly
@@ -108,24 +108,6 @@ export default function LineItems() {
       >
         Add a new item
       </Button>
-
-      <div className="flex justify-between pt-4">
-        <button className="flex items-center space-x-2 px-4 py-2 bg-[#33343B] text-white rounded-lg hover:bg-[#44454C]">
-          <Icon icon="mdi:arrow-left" className="text-lg" />
-          Back
-        </button>
-        <button
-          type="submit"
-          onClick={(e) => {
-            e.preventDefault();
-            formik.handleSubmit();
-          }}
-          className="flex items-center space-x-2 px-4 py-2 bg-[#C37D35] text-white rounded-lg hover:bg-[#A96930]"
-        >
-          Next
-          <Icon icon="mdi:arrow-right" className="text-lg" />
-        </button>
-      </div>
     </div>
   );
 }
