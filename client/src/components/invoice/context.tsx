@@ -5,6 +5,8 @@ import { generatePDF } from "../../libs/actions";
 import { addToast } from "@heroui/react";
 import { format } from "date-fns";
 import { invoiceSchema } from "../../libs/validations";
+import axios from "axios";
+import { API_URL } from "../../libs/config";
 
 type InvoiceContextType = {
   formik: ReturnType<typeof useFormik<InvoiceType>>;
@@ -95,11 +97,21 @@ export const InvoiceProvider = ({ children }: Props) => {
     validationSchema: invoiceSchema,
     onSubmit: async (values) => {
       await generatePDF(values)
-        .then(() => {
+        .then(async () => {
           addToast({
-            title: "Invoice Downloaded",
-            description: "Invoice downloaded successfully",
+            title: "Invoice Saved",
+            description: "Invoice saved successfully",
             color: "success",
+            promise: new Promise(async (resolve, reject) => {
+              await axios
+                .post(API_URL + "/api/invoices", values)
+                .then(() => {
+                  resolve(true);
+                })
+                .catch((err) => {
+                  reject(err);
+                });
+            }),
           });
         })
         .catch(() => {

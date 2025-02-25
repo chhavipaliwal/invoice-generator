@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-
+const Invoice = require("./models/Invoice");
 const connectDB = require("./db");
 require("dotenv").config();
 
@@ -26,8 +26,16 @@ app.get("/", async (req, res) => {
   res.send(await connectDB());
 });
 
-app.get("/about", (req, res) => {
-  res.send("About route 🎉 ");
+app.get("/api/invoices", async (req, res) => {
+  await connectDB();
+  const invoices = await Invoice.find();
+  res.send(invoices);
+});
+
+app.post("/api/invoices", async (req, res) => {
+  await connectDB();
+  const invoice = await Invoice.create(req.body);
+  res.send(invoice);
 });
 
 app.listen(PORT, () => console.log(`- Local:\thttp://localhost:${PORT}`));
