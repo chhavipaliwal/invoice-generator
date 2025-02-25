@@ -26,16 +26,64 @@ app.get("/", async (req, res) => {
   res.send(await connectDB());
 });
 
-app.get("/api/invoices", async (req, res) => {
-  await connectDB();
-  const invoices = await Invoice.find();
-  res.send(invoices);
-});
+// create invoice
 
 app.post("/api/invoices", async (req, res) => {
-  await connectDB();
-  const invoice = await Invoice.create(req.body);
-  res.send(invoice);
+  try {
+    await connectDB();
+    const invoice = await Invoice.create(req.body);
+    res.send(invoice);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// get all invoices
+
+app.get("/api/invoices", async (req, res) => {
+  try {
+    await connectDB();
+    const invoices = await Invoice.find();
+    res.send(invoices);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// get invoice by id
+
+app.get("/api/invoices/:id", async (req, res) => {
+  try {
+    await connectDB();
+    const invoice = await Invoice.findById(req.params.id);
+    res.send(invoice);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// update invoice
+
+app.put("/api/invoices/:id", async (req, res) => {
+  try {
+    await connectDB();
+    const invoice = await Invoice.findByIdAndUpdate(req.params.id, req.body);
+    res.send(invoice);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// delete invoice
+
+app.delete("/api/invoices/:id", async (req, res) => {
+  try {
+    await connectDB();
+    const invoice = await Invoice.findByIdAndDelete(req.params.id);
+    res.send(invoice);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 app.listen(PORT, () => console.log(`- Local:\thttp://localhost:${PORT}`));
