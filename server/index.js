@@ -11,7 +11,7 @@ const app = express();
 
 const corsOptions = {
   origin: [
-    "https://chhavi-paliwal-invoice-generator.vercel.app/",
+    "https://chhavi-paliwal-invoice-generator.vercel.app",
     "http://localhost:5173",
     "http://localhost:3000",
   ],
