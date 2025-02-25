@@ -1,6 +1,6 @@
 import { useInvoice } from "../../context";
 import { Input } from "@heroui/react";
-import { Icon } from "@iconify/react";
+
 export default function PaymentInfo() {
   const { formik } = useInvoice();
   return (

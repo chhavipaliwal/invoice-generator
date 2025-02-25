@@ -1,5 +1,4 @@
 import { useInvoice } from "../../context";
-import { Icon } from "@iconify/react";
 import { Input, Select, SelectItem } from "@heroui/react";
 import { currencies } from "../../../../libs/config";
 import { FormatCurrency } from "../../../../libs/utility";
