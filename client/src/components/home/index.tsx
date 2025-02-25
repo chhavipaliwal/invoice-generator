@@ -19,6 +19,8 @@ export default function Home() {
     fetchData();
   }, []);
 
+  console.log(data);
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center px-6 ">
       <motion.div
