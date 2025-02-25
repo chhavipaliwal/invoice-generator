@@ -6,10 +6,8 @@ require("dotenv").config();
 
 const PORT = process.env.PORT;
 
-connectDB();
-
 app.get("/", async (req, res) => {
-  res.send("Hello World 🌍");
+  res.send(await connectDB());
 });
 
 app.get("/about", (req, res) => {
