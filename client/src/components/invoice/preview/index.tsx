@@ -26,6 +26,7 @@ export default function Preview() {
               })(),
               color: "danger",
             });
+            formik.handleSubmit();
           } else {
             formik.handleSubmit();
           }
