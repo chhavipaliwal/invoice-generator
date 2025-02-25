@@ -75,7 +75,7 @@ export default function Form() {
         >
           {(item) => (
             <Tab key={item.key} title={item.title}>
-              <ScrollShadow className="max-h-[70vh] overflow-y-auto">
+              <ScrollShadow className="max-h-[65vh] overflow-y-auto">
                 {item.component}
               </ScrollShadow>
             </Tab>

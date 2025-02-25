@@ -2,15 +2,14 @@ const express = require("express");
 const app = express();
 
 const connectDB = require("./db");
-const User = require("./models/User");
 require("dotenv").config();
 
 const PORT = process.env.PORT;
 
+connectDB();
+
 app.get("/", async (req, res) => {
-  await connectDB();
-  const users = await User.find();
-  res.json(users);
+  res.send("Hello World 🌍");
 });
 
 app.get("/about", (req, res) => {
