@@ -1,25 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@heroui/react";
-import axios from "axios";
-import { API_URL } from "../../libs/config";
 
 export default function Home() {
-  const [_data, setData] = useState();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(API_URL);
-        console.log(res.data);
-        setData(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
-
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center px-6 ">
       <motion.div

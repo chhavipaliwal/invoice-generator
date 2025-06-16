@@ -9,7 +9,7 @@ const Navbar = () => {
           </Link>
           <ul
             className={
-              "md:flex space-x-6 absolute md:static bg-[#C37D35] w-full md:w-auto left-0 top-16 md:top-0"
+              "md:flex space-x-6 absolute md:static  w-full md:w-auto left-0 top-16 md:top-0"
             }
           >
             <li className="p-2 md:p-0">
@@ -19,7 +19,7 @@ const Navbar = () => {
             </li>
             <li className="p-2 md:p-0">
               <Link href="/invoices" className="hover:underline text-white">
-                Create I
+                Create
               </Link>
             </li>
             <li className="p-2 md:p-0">

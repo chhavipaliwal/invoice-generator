@@ -30,7 +30,7 @@ export default function Footer() {
             Twitter
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/chhavipaliwal/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-[#C37D35] transition"
@@ -38,7 +38,7 @@ export default function Footer() {
             LinkedIn
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/chhavipaliwal"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-[#C37D35] transition"
