@@ -22,7 +22,7 @@ export default function Home() {
           <Button
             as="a"
             href="/invoices"
-            className="bg-primary text-white px-6 py-3 rounded-md hover:bg-primary transition"
+            className="bg-primary text-white px-6 py-3 rounded-md hover:bg-default hover:border-primary hover:border transition"
           >
             Create Invoice
           </Button>
